@@ -1,0 +1,65 @@
+app:
+  image:
+    repository: "${CI_REGISTRY_IMAGE}/server"
+    tag: "$VERSION"
+
+  replicaCount: $REPLICA_COUNT
+
+  regcred: regcred-hitlworkbench
+  port: 8050
+
+  requests:
+    cpu: 100m
+    memory: 250Mi
+    # give me a node that has at least one GPUs
+    gpu: 1
+  limits:
+    cpu: 3000m
+    memory: 16Gi
+
+
+  livenessProbe: |
+    httpGet:
+      path: "/"
+      port: {{ .Values.app.port }}
+      scheme: HTTP
+    initialDelaySeconds: 60
+    timeoutSeconds: 10
+    periodSeconds: 30
+    failureThreshold: 3
+    successThreshold: 1
+
+  readinessProbe: |
+    httpGet:
+      path: "/"
+      port: {{ .Values.app.port }}
+      scheme: HTTP
+    initialDelaySeconds: 60
+    timeoutSeconds: 10
+    periodSeconds: 30
+    failureThreshold: 3
+    successThreshold: 1
+
+  extraEnv:
+    BACKEND_HOST: '${RELEASE_NAME}-server'
+    BACKEND_PORT: ‘8050’
+    HOST: $URL_SUFFIX
+
+  ingress:
+    enabled: true
+    url: $URL_FRONTEND
+    internal:
+      enabled: true
+      whitelistSourceRange: 134.34.225.45/16
+    extraAnnotations: |
+      nginx.ingress.kubernetes.io/proxy-body-size: 5m
+      nginx.ingress.kubernetes.io/client-max-body-size: 5m
+
+  # for the volume
+  pvc:
+    enabled: true
+    storage: 15Gi
+    mountPath: /app
+
+
+

@@ -1,0 +1,10 @@
+from setuptools import setup
+
+setup(
+    name="babyai",
+    version="1.1.2",
+    license="BSD 3-clause",
+    keywords="memory, environment, agent, rl, openaigym, openai-gym, gym",
+    packages=["babyai", "babyai.levels", "babyai.utils"],
+    install_requires=[],
+)
