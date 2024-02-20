@@ -85,10 +85,8 @@ app.layout = html.Div([
             dbc.Tooltip('save current data', target='pause_button', placement='top'),
             dbc.Button([refresh_icon], id='refresh_button', disabled='True'),
             dbc.Tooltip('display new data', target='refresh_button', placement='top'),
-            html.Div(id='notification_dot',
-                     style={'height': '10px', 'width': '10px', 'border-radius': '5px', 'margin-left': '-5px',
-                            'margin-top': '-3px'})
-        ], style={'margin-left': '2vw', 'display': 'flex'}),
+            html.Div(id='notification_dot')
+        ], id='options_div'),
         html.Div([
             html.Label(id='time_counter', children='Time elapsed: ' + time_elapsed,
                        style={'margin': 0, 'position': 'relative', 'top': '50%', '-ms-transform': 'translateY(-50%)',
