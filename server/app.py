@@ -88,43 +88,30 @@ app.layout = html.Div([
             html.Div(id='notification_dot')
         ], id='options_div'),
         html.Div([
-            html.Label(id='time_counter', children='Time elapsed: ' + time_elapsed,
-                       style={'margin': 0, 'position': 'relative', 'top': '50%', '-ms-transform': 'translateY(-50%)',
-                              'transform': 'translateY(-50%'})
-        ], style={'margin-left': '2vw'}),
+            html.Label(id='time_counter', children='Time elapsed: ' + time_elapsed)
+        ], id='time_counter_div'),
         html.Div([
             html.Label('Training progress: ',
-                       style={'margin': 0, 'position': 'relative', 'top': '50%',
-                              '-ms-transform': 'translateY(-50%)',
-                              'transform': 'translateY(-50%)'})
+                       id ='training_progress_label')
         ], style={'margin-left': '2vw'}),
         html.Div([
-            dbc.Progress(id='progress_bar', value=0, striped=True, label='0%',
-                         style={'font-size': '1rem', 'height': '0.8vw', 'width': '20vw', 'margin': 0,
-                                'position': 'relative', 'top': '50%', '-ms-transform': 'translateY(-50%)',
-                                'transform': 'translateY(-50%)'})
+            dbc.Progress(id='progress_bar', value=0, striped=True, label='0%')
         ], style={'margin-left': '0.5vw'})
     ], style={'display': 'flex'}),
     html.Div(children=[
         html.Div([
-
             # overview-div
             html.Div([
                 # div that contains all information on loss and reward
                 html.Div([
                     loss_reward,
-                ], id='gradient_norm-div',
-                    #style={'padding-right': '1vw', 'padding-left': '1vw', 'padding-top': '1vh', 'padding-bottom': '1vh',
-                           #'background-color': '#f4f4f4'}
-),
+                ], id='gradient_norm-div'),
             ], id='overview-div'),
-
             # div that contains all information on uncertainty
             html.Div([
                 html.Div([
                     uncertainty,
-                ], style={'padding-right': '1vw', 'padding-left': '1vw', 'padding-bottom': '1vh',
-                          'background-color': '#f4f4f4'})
+                ], id='inner_uncertainty_div')
             ], id='uncertainty-div')
         ]),
 
@@ -132,52 +119,12 @@ app.layout = html.Div([
         html.Div([
             html.Div([
                 feedback
-            ], style={'padding-right': '1vw', 'padding-left': '1vw', 'padding-bottom': '1vh',
-                      'background-color': '#f9f9f9', 'width': '28vw', 'height': '85vh', 'display': 'none'}),
+            ]),
         ], id='feedback-div')
 
     ], style={'display': 'flex'}, className='row')
 
 ])
-
-
-# @app.callback(
-#     Output(component_id='feedback-div', component_property='style'),
-#     Input(component_id='checklist', component_property='value')
-# )
-# def update_hide_status_feedback_div(checklist):
-#     if 'HITL feedback' in checklist:
-#         width = '28vw' if len(checklist) > 1 else '100vw'
-#         return {'display': 'flex', 'text-align': 'center',
-#                 'height': '85vh', 'width': width}
-#     else:
-#         return {'display': 'none'}
-
-
-# @app.callback(
-#     Output(component_id='overview-div', component_property='style'),
-#     Input(component_id='checklist', component_property='value')
-# )
-# def update_hide_status_overview_div(checklist):
-#     if 'Gradient Norm' in checklist:
-#         width = '70vw' if 'HITL feedback' in checklist else '100vw'
-#         height = '44vh' if 'Uncertainty' in checklist else '88vh'
-#         return {'display': 'flex', '''background-color': '#99CCFF',''' 'height': height, 'width': width}
-#     else:
-#         return {'display': 'none'}
-
-
-# @app.callback(
-#     Output(component_id='uncertainty-div', component_property='style'),
-#     Input(component_id='checklist', component_property='value')
-# )
-# def update_hide_status_uncertainty_div(checklist):
-#     if 'Uncertainty' in checklist:
-#         width = '70vw' if 'HITL feedback' in checklist else '100vw'
-#         height = '44vh' if 'Gradient Norm' in checklist else '88vh'
-#         return {'display': 'flex', ''''background-color': '#FF9999',''' 'height': height, 'width': width}
-#     else:
-#         return {'display': 'none'}
 
 
 @app.callback(
@@ -373,19 +320,7 @@ def refresh_vis_data(n_clicks, last_labeled_episode, feedback_episodes, vis_dict
     if not vis_dict:
         return no_update
     else:
-        # setting the dcc.Store variables in loss_reward.py with new data:
-        # loss_stepwise = list(vis_dict['loss_stepwise'].values())
-        # policy_loss_stepwise = list(vis_dict['policy_loss_stepwise'].values())
-        # value_loss_stepwise = list(vis_dict['value_loss_stepwise'].values())
-        # print(f'policy_loss_stepwise: {policy_loss_stepwise}')
-        # print(f'value_loss_stepwise: {value_loss_stepwise}')
-        # print(f'loss_stepwise: {loss_stepwise}')
-        # loss_episode_wise = [round(sum(e) / len(e), 2) for e in loss_stepwise]
         loss_episode_wise = list(vis_dict['loss_episode_wise'].values())
-        # rewards_stepwise = list(vis_dict['rewards'].values())
-        # divide by 20 (the reward-scale, see train_rl.py) and 2 (maximum possible reward with feedback) to normalize
-        # the rewards to the range [0, 1]:
-        # rewards_episode_wise = [round(np.mean(e) / 20 / 2, 2) for e in rewards_stepwise]
         rewards_episode_wise = list(vis_dict['reward_episode_wise'].values())
         episodes_fail = [ind for ind, e in enumerate(rewards_episode_wise) if e == 0]
         episodes_success = [ind for ind, e in enumerate(rewards_episode_wise) if e > 0]
@@ -406,7 +341,6 @@ def refresh_vis_data(n_clicks, last_labeled_episode, feedback_episodes, vis_dict
         grid_height = np.array([np.array(ls) for ls in (list(vis_dict['grid_height'].values()))], dtype=object)
         actions = np.array([np.array(ls) for ls in (list(vis_dict['actions'].values()))], dtype=object)
         missions = np.array(list(vis_dict['mission'].values()), dtype=object)
-        # imgs = np.array([np.array(ls) for ls in (list(vis_dict['imgs'].values()))], dtype=object)
         imgs = np.array([np.array(ls) for ls in (list(vis_dict['human_views'].values()))], dtype=object)
 
         # setting the dcc.Store variables in feedback.py:
@@ -519,15 +453,6 @@ def set_save_button_disabled(start_click, stop_click):
         return False
     else:
         return True
-
-
-# # Callback to handle download button click
-# @app.callback(
-#     Output('download_link', 'href'),
-#     Input('download_button', 'n_clicks'))
-# def handle_download(n_clicks):
-#     shutil.make_archive('models', 'zip', './models')
-#     return no_update
 
 
 @app.server.route('/download/models.zip')

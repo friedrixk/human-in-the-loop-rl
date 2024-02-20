@@ -841,3 +841,51 @@ there.
   display: flex;
   margin-left: 2vw;
 }
+
+#time_counter_div{
+  margin-left: 2vw;
+}
+
+#time_counter{
+  margin: 0;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%)
+}
+
+#training_progress_label {
+  margin: 0;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%)
+}
+
+#progress_bar {
+  font-size: 1rem;
+  height: 0.8vw;
+  width: 20vw;
+  margin: 0;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#inner_uncertainty_div {
+  padding-right: 1vw;
+  padding-left: 1vw;
+  padding-bottom: 1vh;
+  background-color: #f4f4f4;
+}
+
+#feedback-div {
+  padding-right: 1vw;
+  padding-left: 1vw;
+  padding-bottom: 1vh;
+  background-color: #f9f9f9;
+  width: 28vw;
+  height: 85vh;
+  display: none;
+}
