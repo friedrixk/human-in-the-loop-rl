@@ -66,11 +66,11 @@ app.layout = html.Div([
         html.Div([
             # div for the download links:
             html.Div([
-                html.A('download models', id='models_download_link', download='models.zip', href='/download/models.zip',
-                       style={'margin-right': '3px'}),
+                html.A('download models', id='models_download_link', download='models.zip',
+                       href='/download/models.zip'),
                 html.A('download user data', id='user_data_download_link', download='user_data.zip',
-                       href='/download/user_data.zip', style={'margin-right': '3px'}),
-            ], style={'display': 'flex'}),
+                       href='/download/user_data.zip'),
+            ], id='download_link_div'),
             # Dropdown to select environment
             dcc.Dropdown(env_list, placeholder='Select env', id='env_dropdown',
                          style={'margin-right': '3px', 'width': '10vw'}),

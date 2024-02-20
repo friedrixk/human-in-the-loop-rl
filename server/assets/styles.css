@@ -763,7 +763,22 @@ there.
     stroke: None !important;
 }
 
+/* id styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 #gradient_norm-div {
   padding: 1vh 1vw;
   background-color: #f4f4f4;
+}
+
+#download_link_div {
+  display: flex;
+}
+
+#user_data_download_link {
+  margin-right: 3px;
+}
+
+#models_download_link {
+  margin-left: 3px;
 }
