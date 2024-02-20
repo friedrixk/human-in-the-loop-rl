@@ -71,13 +71,13 @@ background-color: #B3E5B5;
 }
 
 .feedback {
-    height: 14.5vh,
-    width: 25vw,
-    padding-left: 0.5vw,
-    padding-top: 0.5vw,
-    padding-right: 0.5vw,
-    margin-top: 0.8vh,
-    background-color: #E57373,
+    height: 14.5vh;
+    width: 25vw;
+    padding-left: 0.5vw;
+    padding-top: 0.5vw;
+    padding-right: 0.5vw;
+    margin-top: 0.8vh;
+    background-color: #E57373;
     border-radius: 6px
 }
 
@@ -761,4 +761,9 @@ there.
 
 .cboutline {
     stroke: None !important;
+}
+
+#gradient_norm-div {
+  padding: 1vh 1vw;
+  background-color: #f4f4f4;
 }

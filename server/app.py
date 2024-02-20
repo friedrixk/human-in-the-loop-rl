@@ -60,28 +60,11 @@ app.layout = html.Div([
     dcc.Store(id='dictionary', data=initial_data),  # when providing inital data: data=initial_data
     dcc.Store(id='training_pid'),
     dcc.Interval(id='refresh_data_interval', interval=15000),
-    # dialog that pops up when saving a model. it is centered in the middle of the screen and above all other elements
-    # html.Dialog([
-    #     dbc.Spinner(html.Div(id='save_spinner')),
-    #     html.Div('Saving model...', id='saving_dialog_text', style={'margin': 'auto', 'width': 'fit-content'}),
-    # ], id='saving_dialog', open=True, style={'position': 'absolute', 'top': '50%'}, className='save-dialog'),
-    # Todo: replace with a queue that explicitly asks for fresh data
     html.Div(id='time_counter_interval_div'),
     html.H4('Human in the Loop RL - Workbench', style={'textAlign': 'center'}),
     html.Div([
-        # checklist to choose which information to display
-        # html.Div([
-        #     dcc.Checklist(['Gradient Norm', 'Uncertainty', 'HITL feedback'], id='checklist', inline=True,
-        #                   value=['Gradient Norm', 'Uncertainty', 'HITL feedback'],
-        #                   style={'margin': 0, 'position': 'relative', 'top': '50%', '-ms-transform': 'translateY(-50%)',
-        #                          'transform': 'translateY(-50%'})
-        # ], style={'margin-left': '1vw', 'visibility': 'hidden'}),
         html.Div([
-            # dbc.Button([download_icon], id='download_button',
-            #            style={'padding-left': '0.5vw', 'padding-right': '0.5vw', 'margin-right': '3px',
-            #                   'height': '36px'}),
-            # dbc.Tooltip('download models', target='download_button', placement='top'),
-            # placeholder for the download link:
+            # div for the download links:
             html.Div([
                 html.A('download models', id='models_download_link', download='models.zip', href='/download/models.zip',
                        style={'margin-right': '3px'}),
@@ -145,8 +128,9 @@ app.layout = html.Div([
                 html.Div([
                     loss_reward,
                 ], id='gradient_norm-div',
-                    style={'padding-right': '1vw', 'padding-left': '1vw', 'padding-top': '1vh', 'padding-bottom': '1vh',
-                           'background-color': '#f4f4f4'}),
+                    #style={'padding-right': '1vw', 'padding-left': '1vw', 'padding-top': '1vh', 'padding-bottom': '1vh',
+                           #'background-color': '#f4f4f4'}
+),
             ], id='overview-div'),
 
             # div that contains all information on uncertainty
