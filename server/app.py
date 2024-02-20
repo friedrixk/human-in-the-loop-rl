@@ -60,64 +60,33 @@ app.layout = html.Div([
     dcc.Store(id='dictionary', data=initial_data),  # when providing inital data: data=initial_data
     dcc.Store(id='training_pid'),
     dcc.Interval(id='refresh_data_interval', interval=15000),
-    # dialog that pops up when saving a model. it is centered in the middle of the screen and above all other elements
-    # html.Dialog([
-    #     dbc.Spinner(html.Div(id='save_spinner')),
-    #     html.Div('Saving model...', id='saving_dialog_text', style={'margin': 'auto', 'width': 'fit-content'}),
-    # ], id='saving_dialog', open=True, style={'position': 'absolute', 'top': '50%'}, className='save-dialog'),
-    # Todo: replace with a queue that explicitly asks for fresh data
     html.Div(id='time_counter_interval_div'),
     html.H4('Human in the Loop RL - Workbench', style={'textAlign': 'center'}),
     html.Div([
-        # checklist to choose which information to display
-        # html.Div([
-        #     dcc.Checklist(['Gradient Norm', 'Uncertainty', 'HITL feedback'], id='checklist', inline=True,
-        #                   value=['Gradient Norm', 'Uncertainty', 'HITL feedback'],
-        #                   style={'margin': 0, 'position': 'relative', 'top': '50%', '-ms-transform': 'translateY(-50%)',
-        #                          'transform': 'translateY(-50%'})
-        # ], style={'margin-left': '1vw', 'visibility': 'hidden'}),
         html.Div([
-            # dbc.Button([download_icon], id='download_button',
-            #            style={'padding-left': '0.5vw', 'padding-right': '0.5vw', 'margin-right': '3px',
-            #                   'height': '36px'}),
-            # dbc.Tooltip('download models', target='download_button', placement='top'),
-            # placeholder for the download link:
+            # div for the download links:
             html.Div([
-                html.A('download models', id='models_download_link', download='models.zip', href='/download/models.zip',
-                       style={'margin-right': '3px'}),
+                html.A('download models', id='models_download_link', download='models.zip',
+                       href='/download/models.zip'),
                 html.A('download user data', id='user_data_download_link', download='user_data.zip',
-                       href='/download/user_data.zip', style={'margin-right': '3px'}),
-            ], style={'display': 'flex'}),
+                       href='/download/user_data.zip'),
+            ], id='download_link_div'),
             # Dropdown to select environment
-            dcc.Dropdown(env_list, placeholder='Select env', id='env_dropdown',
-                         style={'margin-right': '3px', 'width': '10vw'}),
+            dcc.Dropdown(env_list, placeholder='Select env', id='env_dropdown',),
             # Dropdown to select a model
-            dcc.Dropdown(id='model_dropdown', placeholder='Select model', style={'width': '15vw'},
-                         optionHeight=100),
-            dbc.Button([play_icon], id='start_button',
-                       style={'padding-left': '0.5vw', 'padding-right': '0.5vw', 'margin-left': '3px',
-                              'height': '36px'}),
+            dcc.Dropdown(id='model_dropdown', placeholder='Select model', optionHeight=100),
+            dbc.Button([play_icon], id='start_button'),
             dbc.Tooltip('start training', target='start_button', placement='top'),
-            dbc.Button([stop_icon], id='stop_button', disabled=False,
-                       style={'padding-left': '0.5vw', 'padding-right': '0.5vw', 'margin-left': '3px',
-                              'height': '36px'}),
+            dbc.Button([stop_icon], id='stop_button', disabled=False),
             dbc.Tooltip('save model and stop training', target='stop_button', placement='top'),
-            dbc.Button(dbc.Spinner(id='save_spinner', size='sm'), id='save_button', disabled=True,
-                       style={'padding-left': '0.5vw', 'padding-right': '0.5vw', 'margin-left': '3px',
-                              'height': '36px'}),
+            dbc.Button(dbc.Spinner(id='save_spinner', size='sm'), id='save_button', disabled=True),
             dbc.Tooltip('save model', target='save_button', placement='top'),
-            dbc.Button([pause_icon], id='pause_button',
-                       style={'padding-left': '0.5vw', 'padding-right': '0.5vw', 'margin-left': '3px',
-                              'height': '36px'}),
+            dbc.Button([pause_icon], id='pause_button'),
             dbc.Tooltip('save current data', target='pause_button', placement='top'),
-            dbc.Button([refresh_icon], id='refresh_button', disabled='True',
-                       style={'padding-left': '0.5vw', 'padding-right': '0.5vw', 'height': '36px',
-                              'margin-left': '3px'}),
+            dbc.Button([refresh_icon], id='refresh_button', disabled='True'),
             dbc.Tooltip('display new data', target='refresh_button', placement='top'),
-            html.Div(id='notification_dot',
-                     style={'height': '10px', 'width': '10px', 'border-radius': '5px', 'margin-left': '-5px',
-                            'margin-top': '-3px'})
-        ], style={'margin-left': '2vw', 'display': 'flex'}),
+            html.Div(id='notification_dot')
+        ], id='options_div'),
         html.Div([
             html.Label(id='time_counter', children='Time elapsed: ' + time_elapsed,
                        style={'margin': 0, 'position': 'relative', 'top': '50%', '-ms-transform': 'translateY(-50%)',
@@ -145,8 +114,9 @@ app.layout = html.Div([
                 html.Div([
                     loss_reward,
                 ], id='gradient_norm-div',
-                    style={'padding-right': '1vw', 'padding-left': '1vw', 'padding-top': '1vh', 'padding-bottom': '1vh',
-                           'background-color': '#f4f4f4'}),
+                    #style={'padding-right': '1vw', 'padding-left': '1vw', 'padding-top': '1vh', 'padding-bottom': '1vh',
+                           #'background-color': '#f4f4f4'}
+),
             ], id='overview-div'),
 
             # div that contains all information on uncertainty

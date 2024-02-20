@@ -71,13 +71,13 @@ background-color: #B3E5B5;
 }
 
 .feedback {
-    height: 14.5vh,
-    width: 25vw,
-    padding-left: 0.5vw,
-    padding-top: 0.5vw,
-    padding-right: 0.5vw,
-    margin-top: 0.8vh,
-    background-color: #E57373,
+    height: 14.5vh;
+    width: 25vw;
+    padding-left: 0.5vw;
+    padding-top: 0.5vw;
+    padding-right: 0.5vw;
+    margin-top: 0.8vh;
+    background-color: #E57373;
     border-radius: 6px
 }
 
@@ -761,4 +761,83 @@ there.
 
 .cboutline {
     stroke: None !important;
+}
+
+/* id styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+#gradient_norm-div {
+  padding: 1vh 1vw;
+  background-color: #f4f4f4;
+}
+
+#download_link_div {
+  display: flex;
+}
+
+#user_data_download_link {
+  margin-right: 3px;
+}
+
+#models_download_link {
+  margin-left: 3px;
+}
+
+#env_dropdown {
+  margin-right: 3px;
+  width: 10vw;
+}
+
+#model_dropdown {
+  width: 15vw;
+}
+
+/* menu buttons */
+
+#start_button {
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  margin-left: 3px;
+  height: 36px;
+}
+
+#stop_button {
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  margin-left: 3px;
+  height: 36px;
+}
+
+#save_button {
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  margin-left: 3px;
+  height: 36px;
+}
+
+#pause_button {
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  margin-left: 3px;
+  height: 36px;
+}
+
+#refresh_button {
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  margin-left: 3px;
+  height: 36px;
+}
+
+#notification_dot{
+  height: 10px;
+  width: 10px;
+  margin-left: -5px;
+  border-radius: 5px;
+  margin-top: -3px;
+}
+
+#options_div {
+  display: flex;
+  margin-left: 2vw;
 }
