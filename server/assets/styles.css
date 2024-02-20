@@ -782,3 +782,13 @@ there.
 #models_download_link {
   margin-left: 3px;
 }
+
+#env_dropdown {
+  margin-right: 3px;
+  width: 10vw;
+}
+
+model_dropdown {
+  width: 15vw;
+}
+

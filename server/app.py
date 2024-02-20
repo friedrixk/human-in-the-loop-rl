@@ -72,11 +72,9 @@ app.layout = html.Div([
                        href='/download/user_data.zip'),
             ], id='download_link_div'),
             # Dropdown to select environment
-            dcc.Dropdown(env_list, placeholder='Select env', id='env_dropdown',
-                         style={'margin-right': '3px', 'width': '10vw'}),
+            dcc.Dropdown(env_list, placeholder='Select env', id='env_dropdown',),
             # Dropdown to select a model
-            dcc.Dropdown(id='model_dropdown', placeholder='Select model', style={'width': '15vw'},
-                         optionHeight=100),
+            dcc.Dropdown(id='model_dropdown', placeholder='Select model', optionHeight=100),
             dbc.Button([play_icon], id='start_button',
                        style={'padding-left': '0.5vw', 'padding-right': '0.5vw', 'margin-left': '3px',
                               'height': '36px'}),
