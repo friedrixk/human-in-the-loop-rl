@@ -788,7 +788,43 @@ there.
   width: 10vw;
 }
 
-model_dropdown {
+#model_dropdown {
   width: 15vw;
 }
 
+/* menu buttons */
+
+#start_button {
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  margin-left: 3px;
+  height: 36px;
+}
+
+#stop_button {
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  margin-left: 3px;
+  height: 36px;
+}
+
+#save_button {
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  margin-left: 3px;
+  height: 36px;
+}
+
+#pause_button {
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  margin-left: 3px;
+  height: 36px;
+}
+
+#refresh_button {
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  margin-left: 3px;
+  height: 36px;
+}
